@@ -30,7 +30,7 @@ app.post("/api/products", async (req, res) => {
 });
 
 
-// 5000은 점유중인 상태 -> 5001로 변경
+// 5000은 점유중인 상태 -> 5001로 변경.
 app.listen(5001, () => {
     console.log("Server started at http://localhost:5001");
 });
