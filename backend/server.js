@@ -7,7 +7,6 @@ import Product from "./models/product.model.js"; // 모델 import
 dotev.config(); 
 connectDB();
 
-
 const app = express();
 
 app.use(express.json()); 
