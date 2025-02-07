@@ -9,12 +9,13 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const PORT = process.env.PORT || 5001;
+
 
 app.use(express.json());
-
 app.use("/api/products", productRoutes);
 
 // 5000은 점유중인 상태 -> 5001로 변경.
-app.listen(5001, () => {
-	console.log("Server started at http://localhost:5001");
+app.listen(PORT, () => {
+	console.log("Server started at http://localhost:" + PORT);
 });
