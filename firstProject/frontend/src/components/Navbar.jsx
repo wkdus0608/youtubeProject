@@ -7,11 +7,8 @@ import {
   Button,
 } from '@chakra-ui/react';
 import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-// import { PlusSquareIcon } from '@chakra-ui/icons';  // 추가
-
+import { CiSquarePlus } from 'react-icons/ci';
 
 const Navbar = () => {
   return (
@@ -41,7 +38,7 @@ const Navbar = () => {
         <HStack spacing={2} alignItems={'center'}>
           <ChakraLink as={RouterLink} to='/create'>
             <Button>
-              {/* <PlusSquareIcon /> */}
+              <CiSquarePlus />
             </Button>
           </ChakraLink>
         </HStack>
