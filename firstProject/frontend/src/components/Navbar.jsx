@@ -1,6 +1,17 @@
-import { Container, Flex, Text } from '@chakra-ui/react';
+import {
+  Container,
+  Flex,
+  Text,
+  HStack,
+  Link as ChakraLink,
+  Button,
+} from '@chakra-ui/react';
 import React from 'react';
-import { Link } from '@chakra-ui/react';
+// import { Link } from 'react-router-dom';
+// import { Link } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
+// import { PlusSquareIcon } from '@chakra-ui/icons';  // 추가
+
 
 const Navbar = () => {
   return (
@@ -22,8 +33,18 @@ const Navbar = () => {
           bgGradient={'linear(to-r, cyan.400, blue.500)'}
           bgClip={'text'}
         >
-          <Link to={'/'}>Product Store 🛒</Link>
+          <ChakraLink as={RouterLink} to='/'>
+            Product Store 🛒
+          </ChakraLink>
         </Text>
+
+        <HStack spacing={2} alignItems={'center'}>
+          <ChakraLink as={RouterLink} to='/create'>
+            <Button>
+              {/* <PlusSquareIcon /> */}
+            </Button>
+          </ChakraLink>
+        </HStack>
       </Flex>
       NavBar
     </Container>
