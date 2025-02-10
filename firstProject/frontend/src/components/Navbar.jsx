@@ -3,12 +3,12 @@ import {
   Flex,
   Text,
   HStack,
-  Link as ChakraLink,
+  // Link as ChakraLink,
   Button,
   useColorMode,
 } from '@chakra-ui/react';
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CiSquarePlus } from 'react-icons/ci';
 import { IoMoon } from 'react-icons/io5';
 import { LuSun } from 'react-icons/lu';
@@ -35,17 +35,15 @@ const Navbar = () => {
           bgGradient={'linear(to-r, cyan.400, blue.500)'}
           bgClip={'text'}
         >
-          <ChakraLink as={RouterLink} to='/'>
-            Product Store 🛒
-          </ChakraLink>
+          <Link to='/'>Product Store 🛒</Link>
         </Text>
 
         <HStack spacing={2} alignItems={'center'}>
-          <ChakraLink as={RouterLink} to='/create'>
+          <Link to='/create'>
             <Button>
               <CiSquarePlus fontSize={20} />
             </Button>
-          </ChakraLink>
+          </Link>
 
           <Button onClick={toggleColorMode}>
             {colorMode === 'light' ? <IoMoon /> : <LuSun />}
