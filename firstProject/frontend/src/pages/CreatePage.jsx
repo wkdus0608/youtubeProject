@@ -8,6 +8,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { useProductStore } from '../components/store/product';
 
 const CreatePage = () => {
   const [newProduct, setNewProduct] = useState({
@@ -16,8 +17,12 @@ const CreatePage = () => {
     image: '',
   });
 
-  const handleAddProduct = () => {
-    console.log(newProduct);
+  const { createProduct } = useProductStore();
+
+  const handleAddProduct = async () => {
+    const { success, message } = await createProduct(newProduct);
+    console.log('Success:', success);
+    console.log('Message:', message);
   };
 
   return (
@@ -61,7 +66,15 @@ const CreatePage = () => {
               }
             />
 
-            <Button colorScheme='blue' onClick={handleAddProduct} w='full'>
+            <Button
+              colorScheme='blue'
+              onClick={handleAddProduct}
+              w='full'
+              // Chakra UI 폼 유효성 검사 추가
+              isDisabled={
+                !newProduct.name || !newProduct.price || !newProduct.image
+              }
+            >
               Add Product
             </Button>
           </VStack>

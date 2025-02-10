@@ -12,9 +12,12 @@ import { Link } from 'react-router-dom';
 import { CiSquarePlus } from 'react-icons/ci';
 import { IoMoon } from 'react-icons/io5';
 import { LuSun } from 'react-icons/lu';
+// import { useProductStore } from './store/product';
+// 오류 발생시 ../st로 변경해볼 것.
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  // const { products } = useProductStore();
 
   return (
     <Container maxW={'1140px'} px={4}>
