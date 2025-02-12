@@ -24,13 +24,15 @@ import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 // import {  } from './ui/color-mode';
 import { useProductStore } from './store/product';
 import { useState } from 'react';
+import { updateProduct } from '../../../backend/controllers/product.controller';
 
 const ProductCard = ({ product }) => {
-  const [updatedProduct, setUpdateProduct] = useState(product);
+  const [updatedProduct, setUpdatedProduct] = useState(product);
+
   const textColor = useColorModeValue('gray.600', 'gray.200');
   const bg = useColorModeValue('white', 'gray.800');
 
-  const { deleteProduct } = useProductStore();
+  const { deleteProduct, updateProduct } = useProductStore();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -44,7 +46,7 @@ const ProductCard = ({ product }) => {
         duration: 3000,
         isClosable: true,
       });
-    } else
+    } else {
       toast({
         title: 'Success',
         description: message,
@@ -52,6 +54,29 @@ const ProductCard = ({ product }) => {
         duration: 3000,
         isClosable: true,
       });
+    }
+  };
+
+  const handleUpdateProduct = async (pid, updatedProduct) => {
+    const { success, message } = await updateProduct(pid, updatedProduct);
+    onClose();
+    if (!success) {
+      toast({
+        title: 'Error',
+        description: message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: 'Success',
+        description: 'Product updated successfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
@@ -102,27 +127,46 @@ const ProductCard = ({ product }) => {
                 placeholder='Product Name'
                 name='name'
                 value={updatedProduct.name}
+                onChange={(e) =>
+                  setUpdatedProduct({ ...updatedProduct, name: e.target.value })
+                }
               />
               <Input
                 placeholder='Price'
-                name='Price'
+                name='price'
                 type='number'
                 value={updatedProduct.price}
+                onChange={(e) =>
+                  setUpdatedProduct({
+                    ...updatedProduct,
+                    price: e.target.value,
+                  })
+                }
               />
               <Input
                 placeholder='Image URL'
                 name='image'
                 value={updatedProduct.image}
+                onChange={(e) =>
+                  setUpdatedProduct({
+                    ...updatedProduct,
+                    image: e.target.value,
+                  })
+                }
               />
             </VStack>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3}>
+            <Button
+              colorScheme='blue'
+              mr={3}
+              onClick={() => handleUpdateProduct(product._id, updatedProduct)}
+            >
               Update
             </Button>
             <Button variant='ghost' onClick={onClose}>
-              Cancle
+              Cancel
             </Button>
           </ModalFooter>
         </ModalContent>

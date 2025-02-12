@@ -52,6 +52,7 @@ export default tseslint.config(
     rules: {
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
+      'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       'prettier/prettier': 'error',
       'arrow-body-style': 'off',

@@ -17,4 +17,3 @@ export const connectDB = async () => {
 // 다른 곳에서 재사용
 // 다른 곳에서 이름 변경 가능
 // 한 파일에서 한개 지정 가능
-export default connectDB;
