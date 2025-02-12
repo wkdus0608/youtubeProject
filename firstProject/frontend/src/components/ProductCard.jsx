@@ -23,8 +23,10 @@ import {
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 // import {  } from './ui/color-mode';
 import { useProductStore } from './store/product';
+import { useState } from 'react';
 
 const ProductCard = ({ product }) => {
+  const [updatedProduct, setUpdateProduct] = useState(product);
   const textColor = useColorModeValue('gray.600', 'gray.200');
   const bg = useColorModeValue('white', 'gray.800');
 
@@ -96,11 +98,33 @@ const ProductCard = ({ product }) => {
           <ModalCloseButton />
           <ModalBody>
             <VStack spacing={4}>
-              <Input placeholder='Product Name' name='name' />
-              <Input placeholder='Price' name='Price' type='number' />
-              <Input placeholder='Image URL' name='image' />
+              <Input
+                placeholder='Product Name'
+                name='name'
+                value={updatedProduct.name}
+              />
+              <Input
+                placeholder='Price'
+                name='Price'
+                type='number'
+                value={updatedProduct.price}
+              />
+              <Input
+                placeholder='Image URL'
+                name='image'
+                value={updatedProduct.image}
+              />
             </VStack>
           </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3}>
+              Update
+            </Button>
+            <Button variant='ghost' onClick={onClose}>
+              Cancle
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </Box>
